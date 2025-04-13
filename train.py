@@ -6,7 +6,13 @@ import pandas as pd
 
 
 
-device = 'mps' if torch.mps.is_available() else 'cpu'
+if(torch.cuda.is_available()):
+    device = "cuda"
+
+elif(torch.mps.is_available()):
+    device = 'mps'
+else:
+    'cpu'
 
 
 eval_iters = 10000

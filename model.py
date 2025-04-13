@@ -3,9 +3,16 @@ from torch import nn
 from torch.nn import functional as F
 
 
-device = 'mps' if torch.mps.is_available() else 'cpu'
+if(torch.cuda.is_available()):
+    device = "cuda"
+
+elif(torch.mps.is_available()):
+    device = 'mps'
+else:
+    'cpu'
+
 block_size = 256
-emb_n = 364
+emb_n = 384
 n_heads = 8
 n_layer = 8
 dropout = 0.2
